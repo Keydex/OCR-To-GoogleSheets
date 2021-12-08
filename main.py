@@ -1,12 +1,12 @@
 import time
 from datetime import datetime
 import cv2
+import gspread
 import numpy as nm
 import pyautogui
 import pytesseract
 import win32gui
 from PIL import Image
-import gspread
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
@@ -96,7 +96,7 @@ def imToString():
 
 
 # Time between parsing
-delay_time = 30
+DELAY_TIME = 30
 start_time = time.time()
 
 try:
@@ -104,7 +104,7 @@ try:
         print("\nINFO: Checking queue info", datetime.now().isoformat(' ', 'seconds'))
         ffxivMessage = imToString()
         parseFFXIV(ffxivMessage)
-        time.sleep(delay_time - ((time.time() - start_time) % delay_time))
+        time.sleep(DELAY_TIME - ((time.time() - start_time) % DELAY_TIME))
 except Exception as e:
     # Log error here
     print(e)

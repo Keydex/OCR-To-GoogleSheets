@@ -1,0 +1,7 @@
+opencv-python~=4.5.4.60
+gspread~=5.0.0
+numpy~=1.21.4
+PyAutoGUI~=0.9.53
+pytesseract~=0.3.8
+Pillow~=8.4.0
+pywin32==302
