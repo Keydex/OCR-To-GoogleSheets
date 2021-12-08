@@ -23,5 +23,5 @@ There are three constants,
 - Run the application `python main.py`
 
 ### Troubleshooting
-#### `pytesseract.pytesseract.TesseractNotFoundError: tesseract is not installed or it's not in your path`
+`pytesseract.pytesseract.TesseractNotFoundError: tesseract is not installed or it's not in your path`
 Your tesseract installation location is not default to `"C:\Program Files\Tesseract-OCR\tesseract"`, so change the link to the path of where you installed it in the code

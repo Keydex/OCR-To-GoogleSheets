@@ -11,10 +11,6 @@ from PIL import Image
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
-# The ID and range of a sample spreadsheet.
-SAMPLE_SPREADSHEET_ID = '1Sx-8Tq5b1F8hvlE43iBVKS4NrybPAmqUcw-vwPzloc4'
-SAMPLE_RANGE_NAME = 'Class Data!A2:E'
-
 # Allows us to debug ocr and load an existing image into the code
 DEBUG_IMAGE = False
 
@@ -47,6 +43,7 @@ def screenshot(window_title=""):
     else:
         im = pyautogui.screenshot()
         return im
+
 
 def logToGoogleSheets(message):
     print("INFO: Logging to google sheets")
