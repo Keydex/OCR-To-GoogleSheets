@@ -62,7 +62,7 @@ def parseFFXIV(message):
         chunks = message.split('\n')
         for i, x in enumerate(chunks):
             if "Players in queue:" in x:
-                queue_length = int(x.split(' ')[-1][:-1])
+                queue_length = int(x.split(' ')[-1][:-1].replace(',', ''))
                 print("INFO: Queue Length of: ", queue_length)
                 logToGoogleSheets(queue_length)
                 break
