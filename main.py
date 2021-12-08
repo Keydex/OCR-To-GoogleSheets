@@ -36,6 +36,8 @@ def screenshot(window_title=""):
             print("INFO: FFXIV Window not found!")
         # win32gui.SetForegroundWindow(hwnd)
         x, y, x1, y1 = win32gui.GetClientRect(hwnd)
+        print(hwnd)
+        print(x, y, x1, y1)
         x, y = win32gui.ClientToScreen(hwnd, (x, y))
         x1, y1 = win32gui.ClientToScreen(hwnd, (x1 - x, y1 - y))
         im = pyautogui.screenshot(region=(x, y, x1, y1))
@@ -49,7 +51,7 @@ def logToGoogleSheets(message):
     print("INFO: Logging to google sheets")
     gc = gspread.service_account()
     sheet = gc.open_by_key(GOOGLE_SHEET_ID).sheet1
-    sheet.append_row([datetime.now().isoformat(), message, USER])
+    sheet.append_row([datetime.now().strftime("%m/%d/%Y %H:%M:%S"), message, USER], value_input_option='USER_ENTERED')
 
 
 def parseFFXIV(message):
@@ -60,7 +62,7 @@ def parseFFXIV(message):
         chunks = message.split('\n')
         for i, x in enumerate(chunks):
             if "Players in queue:" in x:
-                queue_length = x.split(' ')[-1][:-1]
+                queue_length = int(x.split(' ')[-1][:-1])
                 print("INFO: Queue Length of: ", queue_length)
                 logToGoogleSheets(queue_length)
                 break
@@ -87,7 +89,7 @@ def imToString():
 
     # Convert image to monochrome then parse for text
     parsed_strings = pytesseract.image_to_string(
-        cv2.cvtColor(nm.array(cropped_image), cv2.COLOR_BGR2GRAY),
+        cv2.cvtColor(nm.array(cap), cv2.COLOR_BGR2GRAY),
         lang='eng')
     return parsed_strings
 
